@@ -5,17 +5,18 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const generatePage = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
+// questions for user input to require title of project, description, installation steps, usage, license, GitHub username, email
 const questions = () => {
     return inquirer.prompt([
         {
             type: 'input',
             name: 'project',
-            message: 'What is the name of your project? (Required)',
+            message: 'What is the title of your project? (Required)',
             validate: projectInput => {
                 if (projectInput) {
                     return true;
                 } else {
-                    console.log('You need to enter a project name!');
+                    console.log('You need to enter a project title!');
                     return false;
                 }
             }
