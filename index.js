@@ -96,7 +96,22 @@ const questions = () => {
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const writeToFile = data => {
+    return new Promise((resolve, reject) => {
+        // using writeFile to create a README.md file located in the dist directory
+        fs.writeFile('./dist/README.md', data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            // message to alert user that the file was created and where they can find their new file
+            resolve({
+                ok: true,
+                message: 'You can view your README.md file in the dist directory!'
+            });
+        }) ;
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {}
