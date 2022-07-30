@@ -64,7 +64,7 @@ const questions =
             type: 'checkbox',
             name: 'license',
             message: 'Choose which license is required for this application (Required)',
-            choices: ['MIT', 'Apache', 'GPL']
+            choices: ['MIT', 'Apache_2.0', 'GPLv3']
             // add an option if no license is added
         },
         {
