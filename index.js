@@ -1,13 +1,13 @@
 // TODO: Include packages needed for this application
 // declaring reference to element using const for constant reference
-// using node.js require statement to access fs, inquirer, generatePage to access the modules functions by the const assignment
+// using node.js require statement to access fs, inquirer, generateMarkdown to access the modules functions by the const assignment
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generatePage = require('./utils/generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
 // questions for user input to require title of project, description, installation steps, usage, license, GitHub username, email
-const questions = () => {
-    return inquirer.prompt([
+const questions =
+[
         {
             type: 'input',
             name: 'project',
@@ -65,6 +65,7 @@ const questions = () => {
             name: 'license',
             message: 'Choose which license is required for this application (Required)',
             choices: ['MIT', 'Apache', 'GPL']
+            // add an option if no license is added
         },
         {
             type: 'input',
@@ -92,8 +93,8 @@ const questions = () => {
                 }
             }
         }
-    ]);
-};
+];
+
 
 // TODO: Create a function to write README file
 const writeToFile = data => {
@@ -114,7 +115,19 @@ const writeToFile = data => {
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+// declaring init to return questions data using inquirer
+const init = () => {
+    return inquirer.prompt(questions)
+    .then(projectData => {
+        return generateMarkdown(projectData);
+    })
+    .then(pageReadMe => {
+        return writeToFile(pageReadMe);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
 
 // Function call to initialize app
-init();
+init()
