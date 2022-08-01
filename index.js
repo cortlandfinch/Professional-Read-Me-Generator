@@ -64,8 +64,14 @@ const questions =
             type: 'checkbox',
             name: 'license',
             message: 'Choose which license is required for this application (Required)',
-            choices: ['MIT', 'Apache_2.0', 'GPLv3']
-            // add an option if no license is added
+            choices: ['MIT', 'Apache_2.0', 'GPLv3'],
+            validate: licenseInput => {
+                if (licenseInput) {
+                    return true;
+                } else {
+                    return "You have chose to not include a license for your project.";
+                }
+            }
         },
         {
             type: 'input',

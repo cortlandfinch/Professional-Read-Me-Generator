@@ -14,15 +14,15 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
     if (license === 'MIT') {
       // change these links to where they would be on the page
-      return `/n n/`
+      return `/n ${license} n/`
     }
     if (license === 'Apache_2.0') {
       // change these links to where they would be on the page
-      return `/n n/`
+      return `/n ${license} n/`
     }
     if(license === 'GPLv3') {
       // change these links to where they would be on the page
-      return `/n n/`
+      return `/n ${license} n/`
   }
 };
 
@@ -40,10 +40,24 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
   ## Table of Contents
   * [Description](#description)
-
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contact](#contact)
+  ## Description
+  ${data.description}
+  ## Installation
+  ${data.installation}
+  ## Usage
+  ${data.usage}
+  ${renderLicenseSection(data.license)}
+  ## Contact
+  If you have any further questions in regards to this project please contact ${data.name} at:
+  ${data.email}
 `;
-}
+};
 
 module.exports = generateMarkdown;
